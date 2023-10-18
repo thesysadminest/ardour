@@ -338,7 +338,6 @@ Editor::Editor ()
 	, have_pending_keyboard_selection (false)
 	, pending_keyboard_selection_start (0)
 	, ignore_gui_changes (false)
-	, _drags (new DragManager (this))
 	, lock_dialog (0)
 	  /* , last_event_time { 0, 0 } */ /* this initialization style requires C++11 */
 	, _dragging_playhead (false)
@@ -380,7 +379,6 @@ Editor::Editor ()
 	, transport_preroll_rect (0)
 	, transport_postroll_rect (0)
 	, temp_location (0)
-	, rubberband_rect (0)
 	, _route_groups (0)
 	, _routes (0)
 	, _regions (0)
@@ -3481,8 +3479,8 @@ Editor::begin_selection_op_history ()
 }
 
 void
-Editor::begin_reversible_selection_op (string name)
-{
+Editor::begin_reversible_selection_op (string name){
+
 	if (_session) {
 		//cerr << name << endl;
 		/* begin/commit pairs can be nested */
@@ -6760,112 +6758,3 @@ Editor::duration_to_pixels_unrounded (timecnt_t const & dur) const
 	return sample_to_pixel_unrounded (dur.samples());
 }
 
-Temporal::TimeDomain
-Editor::default_time_domain () const
-{
-	if (_session) {
-		return _session->config.get_default_time_domain();
-	}
-
-	/* Probably never reached */
-
-	if (_snap_mode == SnapOff) {
-		return AudioTime;
-	}
-
-	switch (_grid_type) {
-		case GridTypeNone:
-			/* fallthrough */
-		case GridTypeMinSec:
-			/* fallthrough */
-		case GridTypeCDFrame:
-			/* fallthrough */
-		case GridTypeTimecode:
-			/* fallthrough */
-			return AudioTime;
-		default:
-			break;
-	}
-	return BeatTime;
-}
-
-void
-Editor::start_track_drag (TimeAxisView& tav, int y, Gtk::Widget& w)
-{
-	track_drag = new TrackDrag (dynamic_cast<RouteTimeAxisView*> (&tav), *_session);
-	DEBUG_TRACE (DEBUG::TrackDrag, string_compose ("start track drag with %1\n", track_drag));
-	PBD::stacktrace (std::cerr, 20);
-
-	track_drag->drag_cursor = _cursors->move->gobj();
-	track_drag->predrag_cursor = gdk_window_get_cursor (edit_controls_vbox.get_window()->gobj());
-
-	gdk_window_set_cursor (edit_controls_vbox.get_toplevel()->get_window()->gobj(), track_drag->drag_cursor);
-
-	int xo, yo;
-	w.translate_coordinates (edit_controls_vbox, 0, y, xo, yo);
-
-	track_drag->have_predrag_cursor = true;
-	track_drag->bump_track = nullptr;
-	track_drag->previous = yo;
-	track_drag->start = yo;
-}
-
-void
-Editor::mid_track_drag (GdkEventMotion* ev, Gtk::Widget& w)
-{
-	int xo, yo;
-	w.translate_coordinates (edit_controls_vbox, ev->x, ev->y, xo, yo);
-
-	if (track_drag->first_move) {
-
-		/* move threshold */
-
-		if (abs (yo - track_drag->previous) < (int) (4 * UIConfiguration::instance().get_ui_scale())) {
-			return;
-		}
-
-		if (!track_drag->track->selected()) {
-			set_selected_track (*track_drag->track, Selection::Set, false);
-		}
-		track_drag->first_move = false;
-	}
-
-	track_drag->current = yo;
-
-	if (track_drag->current > track_drag->previous) {
-		if (track_drag->direction != 1) {
-			track_drag->bump_track = nullptr;
-			track_drag->direction = 1;
-		}
-	} else if (track_drag->current < track_drag->previous) {
-		if (track_drag->direction != -1) {
-			track_drag->bump_track = nullptr;
-			track_drag->direction = -1;
-		}
-	}
-
-	if (track_drag->current == track_drag->previous) {
-		return;
-	}
-
-	redisplay_track_views ();
-	track_drag->previous = yo;
-}
-
-void
-Editor::end_track_drag ()
-{
-	if (track_drag->have_predrag_cursor) {
-		gdk_window_set_cursor (edit_controls_vbox.get_toplevel()->get_window()->gobj(), track_drag->predrag_cursor);
-	}
-
-	DEBUG_TRACE (DEBUG::TrackDrag, string_compose ("ending track drag with %1\n", track_drag));
-	delete track_drag;
-	track_drag = nullptr;
-}
-
-bool
-Editor::track_dragging() const
-{
-	return (bool) track_drag;
-}
