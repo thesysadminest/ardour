@@ -2531,7 +2531,7 @@ Editor::set_snapped_cursor_position (timepos_t const & pos)
 
 
 timepos_t
-Editor::snap_to_timecode (timepos_t const & presnap, Temporal::RoundMode direction, SnapPref gpref)
+Editor::snap_to_timecode (timepos_t const & presnap, Temporal::RoundMode direction, SnapPref gpref) const
 {
 	timepos_t start = presnap;
 	samplepos_t start_sample = presnap.samples();
@@ -2608,7 +2608,7 @@ Editor::snap_to_timecode (timepos_t const & presnap, Temporal::RoundMode directi
 }
 
 timepos_t
-Editor::snap_to_minsec (timepos_t const & presnap, Temporal::RoundMode direction, SnapPref gpref)
+Editor::snap_to_minsec (timepos_t const & presnap, Temporal::RoundMode direction, SnapPref gpref) const
 {
 	samplepos_t presnap_sample = presnap.samples ();
 
@@ -2658,7 +2658,7 @@ Editor::snap_to_minsec (timepos_t const & presnap, Temporal::RoundMode direction
 }
 
 timepos_t
-Editor::snap_to_cd_frames (timepos_t const & presnap, Temporal::RoundMode direction, SnapPref gpref)
+Editor::snap_to_cd_frames (timepos_t const & presnap, Temporal::RoundMode direction, SnapPref gpref) const
 {
 	if ((gpref != SnapToGrid_Unscaled) && (minsec_ruler_scale != minsec_show_msecs)) {
 		return snap_to_minsec (presnap, direction, gpref);
@@ -2681,7 +2681,7 @@ Editor::snap_to_cd_frames (timepos_t const & presnap, Temporal::RoundMode direct
 }
 
 timepos_t
-Editor::snap_to_grid (timepos_t const & presnap, Temporal::RoundMode direction, SnapPref gpref)
+Editor::snap_to_grid (timepos_t const & presnap, Temporal::RoundMode direction, SnapPref gpref) const
 {
 	timepos_t ret(presnap);
 
@@ -2707,7 +2707,7 @@ Editor::snap_to_grid (timepos_t const & presnap, Temporal::RoundMode direction, 
 }
 
 timepos_t
-Editor::snap_to_marker (timepos_t const & presnap, Temporal::RoundMode direction)
+Editor::snap_to_marker (timepos_t const & presnap, Temporal::RoundMode direction) const
 {
 	timepos_t before;
 	timepos_t after;
@@ -3870,7 +3870,7 @@ Editor::get_paste_offset (Temporal::timepos_t const & pos, unsigned paste_count,
 }
 
 int32_t
-Editor::get_grid_beat_divisions (GridType gt)
+Editor::get_grid_beat_divisions (GridType gt) const
 {
 	switch (gt) {
 	case GridTypeBeatDiv32:  return 32;
@@ -3907,13 +3907,13 @@ Editor::get_grid_beat_divisions (GridType gt)
  * @return Music grid beat divisions
  */
 int32_t
-Editor::get_grid_music_divisions (Editing::GridType gt, uint32_t event_state)
+Editor::get_grid_music_divisions (Editing::GridType gt, uint32_t event_state) const
 {
 	return get_grid_beat_divisions (gt);
 }
 
 Temporal::Beats
-Editor::get_grid_type_as_beats (bool& success, timepos_t const & position)
+Editor::get_grid_type_as_beats (bool& success, timepos_t const & position) const
 {
 	success = true;
 
@@ -3955,6 +3955,7 @@ Editor::get_grid_type_as_beats (bool& success, timepos_t const & position)
 	case GridTypeBeatDiv3:  //Triplet eighth
 		return Temporal::Beats::from_double (tmap->meter_at (position).note_value() / 12.0);
 
+
 	case GridTypeBeatDiv6:
 		return Temporal::Beats::from_double (tmap->meter_at (position).note_value() / 24.0);
 
@@ -3991,7 +3992,7 @@ Editor::get_grid_type_as_beats (bool& success, timepos_t const & position)
 }
 
 Temporal::Beats
-Editor::get_draw_length_as_beats (bool& success, timepos_t const & position)
+Editor::get_draw_length_as_beats (bool& success, timepos_t const & position) const
 {
 	success = true;
 	GridType grid_to_use = draw_length() == DRAW_LEN_AUTO ? grid_type() : draw_length();
@@ -4006,7 +4007,7 @@ Editor::get_draw_length_as_beats (bool& success, timepos_t const & position)
 }
 
 timecnt_t
-Editor::get_nudge_distance (timepos_t const & pos, timecnt_t& next)
+Editor::get_nudge_distance (timepos_t const & pos, timecnt_t& next) const
 {
 	timecnt_t ret;
 
