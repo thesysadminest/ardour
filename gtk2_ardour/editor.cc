@@ -137,6 +137,7 @@
 #include "marker.h"
 #include "midi_region_view.h"
 #include "midi_time_axis.h"
+#include "midi_view.h"
 #include "mixer_strip.h"
 #include "mixer_ui.h"
 #include "mouse_cursors.h"
@@ -6269,7 +6270,7 @@ Editor::popup_note_context_menu (ArdourCanvas::Item* item, GdkEvent* event)
 	   popping up the menu will cause a region leave event which clears
 	   entered_regionview. */
 
-	MidiRegionView&       mrv = note->region_view();
+	MidiView&       mrv = note->region_view();
 	const RegionSelection rs  = get_regions_from_selection_and_entered ();
 	const uint32_t sel_size = mrv.selection_size ();
 
@@ -6278,7 +6279,7 @@ Editor::popup_note_context_menu (ArdourCanvas::Item* item, GdkEvent* event)
 
 	if (sel_size > 0) {
 		items.push_back(MenuElem(_("Delete"),
-					 sigc::mem_fun(mrv, &MidiRegionView::delete_selection)));
+					 sigc::mem_fun(mrv, &MidiView::delete_selection)));
 	}
 
 	items.push_back(MenuElem(_("Edit..."),
@@ -6405,7 +6406,7 @@ Editor::instant_save ()
 }
 
 void
-Editor::snap_to_internal (timepos_t& start, Temporal::RoundMode direction, SnapPref pref, bool ensure_snap)
+Editor::snap_to_internal (timepos_t& start, Temporal::RoundMode direction, SnapPref pref, bool ensure_snap) const
 {
 	UIConfiguration const& uic (UIConfiguration::instance ());
 	const timepos_t presnap = start;
@@ -6442,8 +6443,8 @@ Editor::snap_to_internal (timepos_t& start, Temporal::RoundMode direction, SnapP
 
 		if (!region_boundary_cache.empty ()) {
 
-			vector<timepos_t>::iterator prev = region_boundary_cache.begin ();
-			vector<timepos_t>::iterator next = std::upper_bound (region_boundary_cache.begin (), region_boundary_cache.end (), presnap);
+			auto prev = region_boundary_cache.begin ();
+			auto next = std::upper_bound (region_boundary_cache.begin (), region_boundary_cache.end (), presnap);
 			if (next != region_boundary_cache.begin ()) {
 				prev = next;
 				prev--;
