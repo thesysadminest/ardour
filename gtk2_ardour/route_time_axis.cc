@@ -341,9 +341,6 @@ RouteTimeAxisView::~RouteTimeAxisView ()
 
 	delete automation_action_menu;
 
-	delete _view;
-	_view = 0;
-
 	_automation_tracks.clear ();
 
 	delete route_group_menu;
