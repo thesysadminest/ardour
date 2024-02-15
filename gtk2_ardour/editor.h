@@ -1838,8 +1838,6 @@ private:
 		return stretch_marker_cb.get_active ();
 	}
 
-	bool snap_mode_button_clicked (GdkEventButton*);
-
 	Gtk::HBox ebox_hpacker;
 	Gtk::VBox ebox_vpacker;
 
