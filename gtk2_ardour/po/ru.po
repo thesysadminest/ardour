@@ -3,25 +3,25 @@
 # This file is distributed under the same license as the gtk-ardour package.
 #
 # Igor Blinov <pitstop@nm.ru>, 2004.
-# Александр Кольцов <ag1455@mail.ru>, 2014-2016
+# Александр Кольцов <ag1455@mail.ru>, 2014-2016.
 # Петр Семилетов <tea@list.ru>? 2016
 # Alexandre Prokoudine <alexandre.prokoudine@gmail.com>, 2006-2023.
+# Денис Горин <dvgv35@gmail.com>, 2024.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: Ardour 8\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-05-27 00:52+0200\n"
-"PO-Revision-Date: 2024-05-27 11:31+0200\n"
-"Last-Translator: Alexandre Prokoudine <alexandre.prokoudine@gmail.com>\n"
-"Language-Team: Russian <gnome-cyr@lists.gnome.org>\n"
+"PO-Revision-Date: 2024-06-03 20:37+0300\n"
+"Last-Translator: Денис Горин <dvgv35@gmail.com>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
-"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Poedit 3.4\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<"
+"=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: Lokalize 22.12.3\n"
 "%100>=20) ? 1: 2);\n"
 
 #: about.cc:133
@@ -1746,7 +1746,7 @@ msgstr "Восстановить данные"
 
 #: ardour_ui2.cc:93
 msgid "Return to last playback start when stopped"
-msgstr "Вернуться к точке начала воспроизведения"
+msgstr "Возвращаться к точке начала воспроизведения"
 
 #: ardour_ui2.cc:94
 msgid ""
@@ -1885,11 +1885,11 @@ msgstr "За диапазоном"
 
 #: ardour_ui2.cc:448 ardour_ui_ed.cc:474
 msgid "Punch|In"
-msgstr ""
+msgstr "Начало"
 
 #: ardour_ui2.cc:449 ardour_ui_ed.cc:478
 msgid "Punch|Out"
-msgstr ""
+msgstr "Конец"
 
 #: ardour_ui2.cc:456
 msgid "Disable PDC"
@@ -4879,11 +4879,11 @@ msgstr "Фокус при масштабировании"
 
 #: editor.cc:3665
 msgid "Expand Tracks"
-msgstr "Увеличить дорожки по высоте"
+msgstr "Увеличить высоту дорожек"
 
 #: editor.cc:3666
 msgid "Shrink Tracks"
-msgstr "Уменьшить дорожки по высоте"
+msgstr "Уменьшить высоту дорожек"
 
 #: editor.cc:3667
 msgid "Number of visible tracks"
@@ -8898,7 +8898,7 @@ msgstr "Список файлов"
 
 #: export_dialog.cc:158
 msgid "Only Analyze"
-msgstr "Только пяанализироапть"
+msgstr "Только проанализировать"
 
 #: export_dialog.cc:188
 msgid "File format"
@@ -9158,7 +9158,7 @@ msgstr "Добавить тишину в начало:"
 
 #: export_format_dialog.cc:69
 msgid "Trim silence at end"
-msgstr "Отрезать тишину в начале"
+msgstr "Отрезать тишину в конце"
 
 #: export_format_dialog.cc:70
 msgid "Add silence at end:"
@@ -9213,7 +9213,7 @@ msgstr "Создать файл с отметками глав для MP4"
 
 #: export_format_dialog.cc:103
 msgid "Tag file with session's metadata"
-msgstr "Добавить в файла метаданные сессии"
+msgstr "Добавить в файл метаданные сессии"
 
 #: export_format_dialog.cc:118
 msgid "limit to"
@@ -9318,11 +9318,11 @@ msgstr "Без водяного знака"
 
 #: export_format_dialog.cc:662
 msgid "1/2 sec white noise every 15 sec"
-msgstr "1/2 секунды белого шума каждый 15 секунд"
+msgstr "1/2 секунды белого шума каждые 15 секунд"
 
 #: export_format_dialog.cc:668
 msgid "1 sec white noise every 30 sec"
-msgstr "1 секунда белого шума каждый 30 секунд"
+msgstr "1 секунда белого шума каждые 30 секунд"
 
 #: export_format_dialog.cc:674
 msgid "1 sec white noise every 2 mins"
@@ -14353,7 +14353,7 @@ msgstr ""
 
 #: rc_option_editor.cc:1174
 msgid "Waveform Clip Level (dBFS)"
-msgstr "Уровень обрезки волновой формы (dBFS)"
+msgstr "Уровень обрезки формы сигнала (dBFS)"
 
 #: rc_option_editor.cc:1206
 msgid "Playback (seconds of buffering)"
@@ -14865,7 +14865,7 @@ msgstr "Никогда"
 #: rc_option_editor.cc:2805 rc_option_editor.cc:2813 rc_option_editor.cc:2825
 #: rc_option_editor.cc:2837 rc_option_editor.cc:2838
 msgid "Appearance/Waveform"
-msgstr "Внешний вид/Волновая форма"
+msgstr "Внешний вид/Форма сигнала"
 
 #: rc_option_editor.cc:2785
 msgid "Editor Waveforms"
@@ -14881,7 +14881,7 @@ msgstr "Показывать форму сигнала при записи"
 
 #: rc_option_editor.cc:2808
 msgid "Show waveform clipping"
-msgstr "Показывать клиппинг волновой формы"
+msgstr "Показывать клиппинг формы сигнала"
 
 #: rc_option_editor.cc:2817
 msgid "Waveform scale"
@@ -16719,7 +16719,7 @@ msgstr "Это изменение вступит в силу при следую
 
 #: rc_option_editor.cc:4804
 msgid "Power Management, CPU DMA latency"
-msgstr "Управление питание, задержка CPU DMA"
+msgstr "Управление питанием, задержка CPU DMA"
 
 #: rc_option_editor.cc:4835
 msgid "Lowest (prevent CPU sleep states)"
@@ -16786,7 +16786,7 @@ msgstr ""
 
 #: rc_option_editor.cc:4917
 msgid "all but two processor"
-msgstr "Все кроме двух процессоров"
+msgstr "Все процессоры кроме двух"
 
 #: rc_option_editor.cc:4931
 msgid "Memory Usage"
@@ -17526,6 +17526,11 @@ msgid ""
 "%4 for Momentary mute\n"
 "Right-Click for Context menu"
 msgstr ""
+"Приглушение дорожки\n"
+"%2+ЛКМ — обойти правило группы\n"
+"%1+%3+ЛКМ — переключить ВСЕ дорожки\n"
+"%4 — мгновенное солирование\n"
+"ПКМ — открыть контекстное меню"
 
 #: route_ui.cc:224
 msgid ""
@@ -17534,6 +17539,10 @@ msgid ""
 "%1+%3+Click to toggle ALL tracks\n"
 "Right-Click for Context menu"
 msgstr ""
+"Включить запись дорожки\n"
+"%2+ЛКМ — обойти правило группы\n"
+"%1+%3+ЛКМ — переключить ВСЕ дорожки\n"
+"ПКМ — открыть контекстное меню"
 
 #: route_ui.cc:237
 msgid "Show the strips that send to this bus, and control them from the faders"
@@ -17673,6 +17682,12 @@ msgid ""
 "%4 for Momentary solo\n"
 "Right-Click for Context menu"
 msgstr ""
+"Солирование дорожки\n"
+"%2+ЛКМ — обойти правило группы\n"
+"%1+%5+ЛКМ — эксклюзивное солирование\n"
+"%1+%3+ЛКМ — переключить ВСЕ дорожки\n"
+"%4 — мгновенное солирование\n"
+"ПКМ — открыть контекстное меню"
 
 #: route_ui.cc:2191
 msgid ""
@@ -20188,7 +20203,7 @@ msgid ""
 "Send note off and reset controller messages on all MIDI channels"
 msgstr ""
 "MIDI паника\n"
-"Отправлено сообщение off и сброса сообщений контролера на всех MIDI каналах"
+"Выключить все ноты и сбросить сообщения контроллера на всех MIDI каналах"
 
 #: transport_control_ui.cc:206
 msgid ""
